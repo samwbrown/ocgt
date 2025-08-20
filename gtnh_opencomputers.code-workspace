@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../OpenComputers/src/main/resources/assets/opencomputers/loot/openos",
+			"name": "OC openos"
+		},
+		{
+			"path": "../OpenComputers/src/main/resources/assets/opencomputers/loot",
+			"name": "OC loot disks"
+		},
+		{
+			"path": "../OpenComputers/src/main/resources/assets/opencomputers/lua",
+			"name": "OC lua"
+		},
+		{
+			"path": "../OpenComputers/src/main",
+			"name": "OC all"
+		}
+	],
+	"settings": {
+		"files.watcherExclude": {
+			"**/target": true
+		}
+	}
+}
