@@ -24,10 +24,11 @@ if chat and not print then
   chat.setName("Robot NC")
   print= function (...) chat.say(tb.concat(tb.pack(...), "\t"), 10) end
   chat.say("Configured", 10)
-
 end
 
 print=print or function (...) end
+
+rb.setLightColor(0x00FF00)
 
 -- LIB --
 
@@ -43,7 +44,6 @@ local sides = {
 
 -- CONFIG --
 
-local TIMEOUT=2
 local MACHINE_SIDE=sides.front
 local ME_SIDE=sides.top
 local NC_SIDE=sides.bottom
@@ -143,39 +143,33 @@ local function check_slot(slot)
 end
 
 local function check_fuel()
-  local count= 64 - gen.count()
-  if count == 0 then
+  if gen.count() > 0 or cmp.energy() > (cmp.maxEnergy()/2)  then
     return
   end
 
-  local FUEL_INV=16
-  local FUEL_ME=9
-
-  rb.select(FUEL_INV)
-  local suck_ok= ic.suckFromSlot(ME_SIDE, FUEL_ME, count)
-  if not suck_ok then
+  rb.select(16)
+  if not ic.suckFromSlot(ME_SIDE, 9, 63) then
     print("Failed to get fuel")
     return
   end
 
-  local gen_ok, gen_reason = gen.insert(count)
+  local gen_ok, gen_reason = gen.insert()
   if not gen_ok then
     print("Failed to insert fuel"..gen_reason)
   end
 
-  local remaining= rb.count()
-  if remaining > 0 then
-    ic.dropIntoSlot(ME_SIDE, 1, remaining)
+  if rb.count() > 0 then
+    ic.dropIntoSlot(ME_SIDE, 1)
   end
 
-  print("Re-fueled: "..count-remaining)
+  print("Re-fueled")
 end
 
 build_index()
 
 while true do
   -- wait for signal
-  local sig, inv_slot= computer.pullSignal(TIMEOUT)
+  local sig, inv_slot= computer.pullSignal(10)
   if sig == "inventory_changed" then
     check_slot(inv_slot)
 
