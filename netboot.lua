@@ -18,16 +18,6 @@ print=print or function (...) end
 
 -- LIB --
 
-local sides = {
-  bottom = 0,
-  top = 1,
-  back = 2,
-  front = 3,
-  right = 4,
-  left = 5,
-  unknown = 6
-}
-
 local colours={
     red=0xFF0000,
     blue=0x0000FF,
