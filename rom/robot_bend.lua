@@ -46,30 +46,12 @@ local sides = {
 
 local MACHINE_SIDE=sides.front
 local ME_SIDE=sides.top
-local NC_SIDE=sides.bottom
+local NC_NAME="gt.integrated_circuit"
+
 
 -- MAIN --
 
 local queued={}
-local nc={
-  waiting_slot=nil,
-  loaded_slot=nil,
-  slots={},
-  name=nil,
-}
-
-local function build_index()
-  nc.slots={}
-  for i=1, ic.getInventorySize(NC_SIDE) do
-    local item= ic.getStackInSlot(NC_SIDE, i)
-    if item and item["name"] then
-      nc.name= nc.name or item["name"]
-      nc.slots[item["damage"]] = i
-      print(string.format("NC at slot %03d: %s %d", 
-          i, item["label"], item["damage"]))
-    end
-  end
-end
 
 local function push_queue()
   while #queued > 0 do
@@ -89,58 +71,6 @@ local function push_queue()
   end
 end
 
-local function check_load()
-  if nc.active then
-    -- retrieve current nc and put it away
-    print("Retrieving NC "..nc.loaded_slot)
-    ic.suckFromSlot(MACHINE_SIDE, 1, 1)
-    ic.dropIntoSlot(NC_SIDE, nc.loaded_slot, 1)
-  end
-
-  -- grab new nc and load
-  print("Loading NC "..nc.waiting_slot)
-  ic.suckFromSlot(NC_SIDE, nc.waiting_slot, 1)
-  ic.dropIntoSlot(MACHINE_SIDE, 1, 1)
-  nc.loaded_slot=nc.waiting_slot
-  nc.waiting_slot= nil
-  nc.active=true
-end
-
-local function check_slot(slot)
-  local item= ic.getStackInInternalSlot(slot)
-  if not item or not item["name"] then
-    return
-  end
-
-  -- Get status
-  local nc_slot
-  if item["name"] == nc.name then
-    nc_slot= nc.slots[item["damage"]]
-  end
-
-  if not nc_slot then
-    -- normal item, do it later
-    table.insert(queued, slot)
-    return
-  end
-
-  -- at this point we have a non-consumable item.
-  -- always push it back into me system.
-  rb.select(slot)
-  local ok, drop_fail= ic.dropIntoSlot(ME_SIDE, 1)
-  if not ok then
-    print("Failed to push NC to ME: "..drop_fail)
-    return
-  end
-
-  if nc_slot == nc.loaded_slot then
-    -- nothing to do.
-    print("NC already loaded")
-    return
-  end
-
-  nc.waiting_slot= nc_slot
-end
 
 local function check_fuel()
   if gen.count() > 0 or cmp.energy() > (cmp.maxEnergy()/2)  then
@@ -148,7 +78,7 @@ local function check_fuel()
   end
 
   rb.select(16)
-  if not ic.suckFromSlot(ME_SIDE, 9, 63) then
+  if not ic.suckFromSlot(ME_SIDE, 9, 4) then
     print("Failed to get fuel")
     return
   end
@@ -165,20 +95,19 @@ local function check_fuel()
   print("Re-fueled")
 end
 
-build_index()
 
 while true do
   -- wait for signal
   local sig, inv_slot= computer.pullSignal(10)
   if sig == "inventory_changed" then
-    check_slot(inv_slot)
+    print(inv_slot)
 
-    if nc.active then
-      -- Push all items from the queue
-      push_queue()
-    end
+    local item=ic.getStackInInternalSlot(inv_slot)
+    if item["name"] == NC_NAME then
 
-    if nc.waiting_slot and not ic.getStackInSlot(MACHINE_SIDE, 2) then
+    push_queue()
+
+    if ic.getStackInSlot(MACHINE_SIDE, 2) then
       -- Empty and ready for next NC
       check_load()
     end

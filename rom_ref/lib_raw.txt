@@ -1,0 +1,464 @@
+|-- func rawlen
+|-- func checkArg
+|-- func require
+|-- func assert
+|-- func rawequal
+|-- func dofile
+|-- func pairs
+|-- func xpcall
+|-- func error
+|-- func loadfile
+|-- func print
+|-- func rawset
+|-- func ipairs
+|-- func next
+|-- func tostring
+|-- func getmetatable
+|-- func load
+|-- func tonumber
+|-- func setmetatable
+|-- func pcall
+|-- func select
+|-- func rawget
+|-- func type
+|-- val _OSVERSION=OpenOS 1.8.6
+|-- val runlevel=1
+|-- val _VERSION=Lua 5.3
+|-- tab string
+| |-- func len
+| |-- func gsub
+| |-- func lower
+| |-- func reverse
+| |-- func unpack
+| |-- func sub
+| |-- func pack
+| |-- func byte
+| |-- func upper
+| |-- func packsize
+| |-- func rep
+| |-- func dump
+| |-- func char
+| |-- func format
+| |-- func gmatch
+| |-- func find
+| |-- func match
+|-- tab debug
+| |-- func traceback
+| |-- func getupvalue
+| |-- func getinfo
+| |-- func getlocal
+|-- tab math
+| |-- func ult
+| |-- func cos
+| |-- func ldexp
+| |-- func atan
+| |-- func ceil
+| |-- func log
+| |-- func acos
+| |-- func modf
+| |-- func pow
+| |-- func rad
+| |-- func deg
+| |-- func tan
+| |-- func randomseed
+| |-- func sin
+| |-- func atan2
+| |-- func exp
+| |-- func random
+| |-- func tointeger
+| |-- func floor
+| |-- func max
+| |-- func sqrt
+| |-- func asin
+| |-- func min
+| |-- func fmod
+| |-- func abs
+| |-- func type
+| |-- val huge=inf
+| |-- val pi=3.1415926535898
+| |-- val maxinteger=9223372036854775807
+| |-- val mininteger=-9223372036854775808
+|-- tab coroutine
+| |-- func resume
+|-- tab table
+| |-- func insert
+| |-- func move
+| |-- func concat
+| |-- func sort
+| |-- func pack
+| |-- func unpack
+| |-- func remove
+|-- tab io
+| |-- func stream
+| |-- func lines
+| |-- func output
+| |-- func dup
+| |-- func flush
+| |-- func open
+| |-- func type
+| |-- func write
+| |-- func tmpfile
+| |-- func read
+| |-- func popen
+| |-- func close
+| |-- func error
+| |-- func input
+|-- tab package
+| |-- func delay
+| |-- func searchpath
+| |-- val config=/
+;
+?
+!
+-
+
+| |-- val path=/lib/?.lua;/usr/lib/?.lua;/home/lib/?.lua;./?.lua;/lib/?/init.lua;/usr/lib/?/init.lua;/home/lib/?/init.lua;./?/init.lua
+| |-- tab searchers
+| | |-- func 1
+| | |-- func 2
+| |-- tab loaded
+| | |-- tab filesystem
+| | | |-- func canonical
+| | | |-- func get
+| | | |-- func concat
+| | | |-- func name
+| | | |-- func list
+| | | |-- func segments
+| | | |-- func open
+| | | |-- func isDirectory
+| | | |-- func mount
+| | | |-- func findNode
+| | | |-- func exists
+| | | |-- func proxy
+| | | |-- func realPath
+| | | |-- func path
+| | | |-- tab fstab
+| | | | |-- tab /tmp
+| | | | | |-- val name=tmp
+| | | | | |-- tab links
+| | | | | |-- tab parent
+| | | | | | |-- val name=
+| | | | | | |-- tab links
+| | | | | | |-- tab fs
+| | | | | | | |-- val slot=6
+| | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | |-- val type=filesystem
+| | | | | | | |-- tab read
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=read
+| | | | | | | |-- tab size
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=size
+| | | | | | | |-- tab isReadOnly
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=isReadOnly
+| | | | | | | |-- tab open
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=open
+| | | | | | | |-- tab remove
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=remove
+| | | | | | | |-- tab spaceUsed
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=spaceUsed
+| | | | | | | |-- tab getLabel
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=getLabel
+| | | | | | | |-- tab close
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=close
+| | | | | | | |-- tab setLabel
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=setLabel
+| | | | | | | |-- tab seek
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=seek
+| | | | | | | |-- tab rename
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=rename
+| | | | | | | |-- tab list
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=list
+| | | | | | | |-- tab isDirectory
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=isDirectory
+| | | | | | | |-- tab write
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=write
+| | | | | | | |-- tab makeDirectory
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=makeDirectory
+| | | | | | | |-- tab lastModified
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=lastModified
+| | | | | | | |-- tab spaceTotal
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=spaceTotal
+| | | | | | | |-- tab exists
+| | | | | | | | |-- val address=dbd29530-1a93-4b0a-8377-6e8e1ef401d1
+| | | | | | | | |-- val name=exists
+| | | | | | |-- tab children
+| | | | | | | |-- tab dev
+| | | | | | | | |-- val name=dev
+| | | | | | | | |-- tab links
+| | | | | | | | |-- tab children
+| | | | | | | | |-- tab fs
+| | | | | | | | | |-- val address=f5501a9b-9c23-1e7a-4afe-4b65eed9b88a
+| | | | | | | |-- tab mnt
+| | | | | | | | |-- val name=mnt
+| | | | | | | | |-- tab links
+| | | | | | | | |-- tab children
+| | | | | | | | | |-- tab dbd
+| | | | | | | | | | |-- val name=dbd
+| | | | | |-- tab children
+| | | | | |-- tab fs
+| | | | | | |-- val slot=-1
+| | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | |-- val type=filesystem
+| | | | | | |-- tab read
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=read
+| | | | | | |-- tab size
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=size
+| | | | | | |-- tab isReadOnly
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=isReadOnly
+| | | | | | |-- tab open
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=open
+| | | | | | |-- tab remove
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=remove
+| | | | | | |-- tab spaceUsed
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=spaceUsed
+| | | | | | |-- tab getLabel
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=getLabel
+| | | | | | |-- tab close
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=close
+| | | | | | |-- tab setLabel
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=setLabel
+| | | | | | |-- tab seek
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=seek
+| | | | | | |-- tab rename
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=rename
+| | | | | | |-- tab list
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=list
+| | | | | | |-- tab isDirectory
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=isDirectory
+| | | | | | |-- tab write
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=write
+| | | | | | |-- tab makeDirectory
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=makeDirectory
+| | | | | | |-- tab lastModified
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=lastModified
+| | | | | | |-- tab spaceTotal
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=spaceTotal
+| | | | | | |-- tab exists
+| | | | | | | |-- val address=eb672c1b-190d-493f-8ab4-d9df47e25c0d
+| | | | | | | |-- val name=exists
+| | |-- tab shell
+| | | |-- func getShell
+| | | |-- func parse
+| | | |-- func setWorkingDirectory
+| | | |-- func setAlias
+| | | |-- func setPath
+| | | |-- func getAlias
+| | | |-- func getPath
+| | | |-- func execute
+| | | |-- func aliases
+| | | |-- func prime
+| | | |-- func resolve
+| | | |-- func getWorkingDirectory
+| | |-- tab tty
+| | | |-- func getCursor
+| | | |-- func getViewport
+| | | |-- func gpu
+| | | |-- func clear
+| | | |-- func isAvailable
+| | | |-- func screen
+| | | |-- func keyboard
+| | | |-- func setCursor
+| | | |-- func bind
+| | | |-- func setViewport
+| | | |-- tab stream
+| | | | |-- func write
+| | | | |-- func seek
+| | | | |-- func scroll
+| | | | |-- func read
+| | | | |-- val handle=tty
+| | | | |-- tab close
+| | | | | |-- tab close
+| | | | | | |-- func close
+| | | | | | |-- tab parent
+| | | | | | | |-- val bufferMode=full
+| | | | | | | |-- val bufferSize=8192
+| | | | | | | |-- val closed=false
+| | | | | | | |-- val timeout=inf
+| | | | | | | |-- val tty=true
+| | | | | | | |-- val readTimeout=inf
+| | | | | | | |-- val bufferWrite=
+| | | | | | | |-- val bufferRead=
+| | | | | | | |-- tab mode
+| | | | | | | | |-- val r=true
+| | | | | |-- tab parent
+| | | | | | |-- val bufferMode=no
+| | | | | | |-- val bufferSize=8192
+| | | | | | |-- val closed=false
+| | | | | | |-- val tty=true
+| | | | | | |-- val readTimeout=inf
+| | | | | | |-- val bufferWrite=
+| | | | | | |-- val bufferRead=
+| | | | | | |-- tab mode
+| | | | | | | |-- val w=true
+| | | |-- tab window
+| | | | |-- val blink=true
+| | | | |-- val output_buffer=
+| | | | |-- val x=1
+| | | | |-- val dy=0
+| | | | |-- val height=25
+| | | | |-- val flip=false
+| | | | |-- val width=80
+| | | | |-- val y=25
+| | | | |-- val dx=0
+| | | | |-- val fullscreen=true
+| | | | |-- val keyboard=b288c50b-4d8c-485f-ba77-8db82e7e93a8
+| | | | |-- tab gpu
+| | | | | |-- func setViewport
+| | | | | |-- func setResolution
+| | | | | |-- val slot=2
+| | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | |-- val type=gpu
+| | | | | |-- tab get
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=get
+| | | | | |-- tab getActiveBuffer
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=getActiveBuffer
+| | | | | |-- tab setPaletteColor
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=setPaletteColor
+| | | | | |-- tab freeMemory
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=freeMemory
+| | | | | |-- tab totalMemory
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=totalMemory
+| | | | | |-- tab copy
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=copy
+| | | | | |-- tab getPaletteColor
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=getPaletteColor
+| | | | | |-- tab allocateBuffer
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=allocateBuffer
+| | | | | |-- tab maxDepth
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=maxDepth
+| | | | | |-- tab setDepth
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=setDepth
+| | | | | |-- tab getScreen
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=getScreen
+| | | | | |-- tab getViewport
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=getViewport
+| | | | | |-- tab getResolution
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=getResolution
+| | | | | |-- tab freeAllBuffers
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=freeAllBuffers
+| | | | | |-- tab setForeground
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=setForeground
+| | | | | |-- tab getBufferSize
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=getBufferSize
+| | | | | |-- tab maxResolution
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=maxResolution
+| | | | | |-- tab setBackground
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=setBackground
+| | | | | |-- tab buffers
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=buffers
+| | | | | |-- tab bitblt
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=bitblt
+| | | | | |-- tab setActiveBuffer
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=setActiveBuffer
+| | | | | |-- tab getBackground
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=getBackground
+| | | | | |-- tab freeBuffer
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=freeBuffer
+| | | | | |-- tab fill
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=fill
+| | | | | |-- tab getDepth
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=getDepth
+| | | | | |-- tab getForeground
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=getForeground
+| | | | | |-- tab set
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=set
+| | | | | |-- tab bind
+| | | | | | |-- val address=34423cd8-62e2-4a92-83af-5f8d7b441862
+| | | | | | |-- val name=bind
+| | | | |-- tab saved
+| | | | | |-- val 1=33
+| | | | | |-- val 2=25
+| | | | | |-- val 5=false
+| | | | | |-- val 6=true
+| | | | | |-- tab 3
+| | | | | | |-- val 1=0
+| | | | | | |-- val 2=false
+| | | | | |-- tab 4
+| | | | | | |-- val 1=16777215
+| | | | | | |-- val 2=false
+| | |-- tab os
+| | | |-- func setenv
+| | | |-- func difftime
+| | | |-- func getenv
+| | | |-- func sleep
+| | | |-- func time
+| | | |-- func clock
+| | | |-- func date
+| | |-- tab thread
+| | | |-- func create
+| | | |-- func current
+| | | |-- func waitForAll
+| | | |-- func waitForAny
+| | |-- tab rc
+| | | |-- func unload
+| | | |-- tab loaded
+| | | | |-- tab me_collect.rc
+| | | | | |-- func status
+| | | | | |-- func stop
+| | | | | |-- func start
+| | | | | |-- val _=1
+| | | | | |-- val OUT_PATH=/home/me_collect.out
+| | | | | |-- val SCRIPT_PATH=/home/me_collect.lua
+| | |-- tab vt100
+| | | |-- func parse
+| | | |-- tab rules

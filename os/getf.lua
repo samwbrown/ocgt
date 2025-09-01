@@ -40,7 +40,7 @@ while true do
 end
 
 -- ask for the file
-socket.write("FILE "..filename)
+local file= string.gsub(filename, "%a*/", "")
 
 local fd
 local rc=0
@@ -63,7 +63,7 @@ while true do
 
     -- got data
     if not fd then
-        fd=fs.open(filename, "w")
+        fd=fs.open(file, "w")
     end
     fd:write(data)
     rc = rc + #data

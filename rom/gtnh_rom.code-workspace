@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "rom"
+		},
+		{
+			"path": "/Users/sam/projects/gtnh_oc/tools",
+			"name": "tools"
+		},
+		{
+			"path": "/Users/sam/projects/gtnh_oc/rom_ref",
+			"name": "ref"
+		}
+	],
+	"settings": {
+		"files.watcherExclude": {
+			"**/target": true
+		}
+	}
+}
