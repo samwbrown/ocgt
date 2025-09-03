@@ -1,23 +1,62 @@
 ---@meta "component"
 
+-- regenerate with
+-- grep  "@class.*:" *.lua | cut -d " " -f2 | tr ":" " " | sed -r "s/(.*)/---@field \1\1/g"
+--
+
 ---@class component
----@field gt_machine gt_machine
----@field inventory_controller inventory_controller
----@field gpu gpu
----@field screen screen
+---@field aemultipart aemultipart 
+---@field beekeeper beekeeper 
+---@field blood_altar blood_altar 
+---@field camera camera 
+---@field chat_box chat_box 
+---@field chat chat 
+---@field crafting crafting 
+---@field database database 
+---@field debug debug 
+---@field eeprom eeprom 
+---@field filesystem filesystem 
+---@field geolyzer geolyzer 
 ---@field glasses glasses
----@field aemultipart aemultipart
----@field me_interface me_interface
----@field me_exportbus me_exportbus
----@field me_controller me_controller
----@field level_maintainer level_maintainer
----@field tilechests tilechest
----@field database database
----@field transposer transposer
----@field redstone redstone
----@field modem modem
----@field tps_card tps_card
----@field robot robot
+---@field generator generator 
+---@field gpu gpu 
+---@field gt_machine gt_machine 
+---@field info_panel info_panel 
+---@field internet internet 
+---@field inventory_controller inventory_controller 
+---@field level_maintainer level_maintainer 
+---@field master_ritual_stone master_ritual_stone 
+---@field me_controller me_controller 
+---@field me_exportbus me_exportbus 
+---@field me_interface me_interface 
+---@field modem modem 
+---@field motion_sensor motion_sensor 
+---@field navigation navigation 
+---@field oc_pattern_editor oc_pattern_editor 
+---@field os_keypad os_keypad 
+---@field printer3d printer3d 
+---@field radar radar 
+---@field reactor_chamber reactor_chamber 
+---@field reactor_redstone_port reactor_redstone_port 
+---@field reactor reactor 
+---@field redstone redstone 
+---@field robot robot 
+---@field screen screen 
+---@field sign sign 
+---@field sound sound 
+---@field stargate stargate 
+---@field tank_controller tank_controller 
+---@field tierFiveTurretBase tierFiveTurretBase 
+---@field tierFourTurretBase tierFourTurretBase 
+---@field tierOneTurretBase tierOneTurretBase 
+---@field tierThreeTurretBase tierThreeTurretBase 
+---@field tierTwoTurretBase tierTwoTurretBase 
+---@field tilechest tilechest 
+---@field tps_card tps_card 
+---@field transposer transposer 
+---@field upgrade_me upgrade_me 
+---@field waypoint waypoint 
+---@field world_sensor world_sensor 
 local component = {}
 
 ---Returns the documentation string for the method with the specified name of the component with the specified address, if any.

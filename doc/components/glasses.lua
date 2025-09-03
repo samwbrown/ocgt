@@ -1,6 +1,6 @@
 ---@meta _
 
----@class glasses : BaseComponent
+---@class glasses: BaseComponent
 ---@field type "glasses"
 local glasses = {}
 

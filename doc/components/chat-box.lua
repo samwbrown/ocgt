@@ -4,6 +4,10 @@
 ---@field type "chat_box"
 local chat_box = {}
 
+---@class chat: chat_box
+---@field type "chat"
+local chat = {}
+
 ---Gets the current chat distance of the chat box.
 ---@return number # The current chat distance.
 function chat_box.getDistance() end
