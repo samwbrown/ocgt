@@ -32,7 +32,7 @@ end
 
 -- CONFIG --
 
-local FILE="rom/robot_craft_plates.lua"
+local FILE="debug"
 local ADDR="103.115.209.188"
 local PORT=20222
 
@@ -96,9 +96,6 @@ local function net_print(...)
         s.write(out)
         s.close()
     end
-
-    io.write(out.."\n")
-    io.flush()
 end
 
 print=net_print

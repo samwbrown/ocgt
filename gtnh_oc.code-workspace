@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": ".",
+		},
+		{
+			"path": "/Users/sam/projects/thirdparty/OpenComputers/src/main/resources/assets/opencomputers/loot/openos",
+			"name": "openOS"
+		},
+	],
+	"settings": {
+		"files.watcherExclude": {
+			"**/target": true
+		},
+		"Lua.workspace.library": [
+			"/Users/sam/projects/thirdparty/OpenComputers/src/main/resources/assets/opencomputers/loot/openos/boot",
+			"/Users/sam/projects/thirdparty/OpenComputers/src/main/resources/assets/opencomputers/loot/openos/lib",
+			"/Users/sam/projects/gtnh_oc/doc"
+		]
+	}
+}
