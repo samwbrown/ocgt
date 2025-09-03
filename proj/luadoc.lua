@@ -1,15 +1,23 @@
 
+local cpt=component or require("component")
+setmetatable(cpt, {__index=function(_,k)return cpt.proxy(cpt.list(k)()) end})
+---@cast cpt component
 
-local component=component or require "component"
+local docs={}
+local count=0
+local BUFlen=8000
 
-local docs=""
-local BUFlen=1000
+local function flushdoc()
+    print(table.concat(docs, "\n"))
+    docs={}
+    count=0
+end
 
 local function doc(s)
-    docs=docs.."\n"..s
-    if #docs > BUFlen then
-        print(docs)
-        docs=""
+    docs[#docs+1] = s
+    count = count+ #s + 1
+    if count > BUFlen then
+        flushdoc()
     end
 end
 
@@ -27,13 +35,15 @@ local function ser_key(k)
     end
 end
 
-local function doc_table(t, pre)
+local function doc_table(t, pre, include_mt)
     visited[t] = true
     local meta= getmetatable(t)
-    if meta and meta ~= _G and next(meta) ~= nil then
-        doc(pre.."_mt={")
-        doc_table(meta, pre.."  ")
-        doc(pre.."},")
+    if include_mt and meta and meta ~= _G then
+        if type(meta)=="table" and next(meta) ~=nil then
+            doc(pre.."_mt={")
+            doc_table(meta, pre.."  ")
+            doc(pre.."},")
+        end
     end
 
     for k,v in pairs(t) do
@@ -57,11 +67,11 @@ local function doc_table(t, pre)
         if type(v)=="table" and not visited[v] then
             if rawget(v, "address") and rawget(v, "name") then
                 -- this is actually a component function
-                -- local fundoc= component.doc(t[k].address, t[k].name)
+                -- local fundoc= cpt.doc(t[k].address, t[k].name)
                 -- doc(pre.."F "..tostring(k).." "..fundoc)
             else
                 doc(pre..ser_key(k).."={")
-                doc_table(v, pre.."  ")
+                doc_table(v, pre.."  ", include_mt)
                 doc(pre.."},")
             end
         end
@@ -69,17 +79,18 @@ local function doc_table(t, pre)
 end
 
 local function doc_component(type)
-    local addr,_=component.list(type)()
+    local addr,_=cpt.list(type)()
 
-    doc("\n---@meta \""..type.."\"")
-    doc(  "---@class "..type)
+    doc("\n---@meta _")
+    doc("\n---@class "..type..": BaseComponent")
+    doc(  "---@field type "..type)
     doc(type.."={")
-    doc_table(component.proxy(addr), "  ")
+    doc_table(cpt.proxy(addr), "  ", false)
     doc("}\n")
 
-    for funcname, direct in pairs(component.methods(addr)) do
+    for funcname, direct in pairs(cpt.methods(addr)) do
         -- get documentation string
-        local docstr= component.doc(addr, funcname)
+        local docstr= cpt.doc(addr, funcname)
 
         -- function comment
         doc("---"..string.gmatch(docstr, "%).-[%-%;]+%s*(.*)")())
@@ -113,7 +124,7 @@ local function doc_component(type)
 
             -- replace
             arg= string.gsub(arg, ":", " ")
-            arg= string.gsub(arg, "or", "|")
+            arg= string.gsub(arg, " or ", "|")
 
             doc("---@param "..arg)
         end
@@ -127,18 +138,17 @@ local function doc_component(type)
         -- def
         doc("function "..type.."."..funcname.."("..table.concat(argnames, ", ")..") end\n")
     end
+
+    flushdoc()
 end
 
 -- globals
-doc("---@meta")
-doc("_G={")
-doc_table(_G, "")
-doc("}")
+-- doc("---@meta")
+-- doc("_G={")
+-- doc_table(_G, "", true)
+-- doc("}")
 
 -- components
-for addr, type in pairs(component.list()) do
+for addr, type in pairs(cpt.list()) do
     doc_component(type)
 end
-
--- flush
-print(docs)

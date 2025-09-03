@@ -14,7 +14,6 @@ local filename = shell.resolve(args[1])
 
 -- config
 local ADDR="103.115.209.188"
-local PORT=20222
 local READmax=1400
 local TIMEOUT=10
 
@@ -36,7 +35,7 @@ while true do
 end
 
 -- Ask for the file
-socket.write("FILE "..filename)
+socket.write("FILE "..string.gsub(filename, "/home/", ""))
 
 -- Get data
 local script = ""
@@ -54,13 +53,17 @@ end
 
 -- override
 function output(...)
-    local out=table.concat(table.pack(...), "\t")
-    local cpt=component or require("component")
-    local s, _ = cpt.proxy(cpt.list("internet")()).connect("103.115.209.188:20222")
-    if s.finishConnect() or s.finishConnect() then
-        s.write(out)
-        s.close()
+    if not socket.finishConnect() then
+        local cpt=component or require("component")
+        socket, _ = cpt.proxy(cpt.list("internet")()).connect("103.115.209.188:20222")
+        socket.finishConnect()
+        if not socket.finishConnect() then
+            return
+            io.write("failed to connect\n")
+        end
     end
+    
+    socket.write(table.concat(table.pack(...), "\t"))
 end
 
 -- set env
@@ -73,6 +76,9 @@ if not program or load_fail then
     error(load_fail)
 end
 
+-- close socket
+socket.close()
+
 -- run
 local ok, result =xpcall(program, debug.traceback)
 
@@ -80,8 +86,6 @@ local ok, result =xpcall(program, debug.traceback)
 computer.pullSignal(1)
 
 result=result or ""
-if ok then
-    output("OK:"..result.."\n")
-else
+if not ok then
     output("Failed:"..result.."\n")
 end

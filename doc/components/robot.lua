@@ -4,12 +4,31 @@
 ---@field type "robot"
 local robot = {}
 
+---@alias Side
+---| 0 # sides.bottom
+---| 1 # sides.top
+---| 2 # sides.back
+---| 3 # sides.front
+---| 6 # sides.right
+---| 5 # sides.left
+
+---@alias InteractSide
+---| 3 # sides.front
+---| 2 # sides.back
+---| 1 # sides.top
+
+---@alias MoveDirection
+---| 3 # sides.front
+---| 2 # sides.back
+---| 1 # sides.top
+---| 0 # sides.bottom
+
 ---Gets the durability of the currently equipped tool.
 ---@return number # Durability percentage (0-100).
 function robot.durability() end
 
 ---Moves the robot in the specified direction.
----@param direction number # One of the valid movement sides (front, back, top, bottom).
+---@param direction MoveDirection # One of the valid movement sides (front, back, top, bottom).
 ---@return boolean # True if movement was successful, false otherwise.
 function robot.move(direction) end
 
@@ -23,22 +42,26 @@ function robot.turn(clockwise) end
 function robot.name() end
 
 ---Uses the currently equipped tool against a block or entity.
----@param side number # The side to interact with.
+---@param side InteractSide # The side to interact with.
+---@param face Side|nil # The face of the target block.
+---@param sneaky boolean|nil # Whether to simulate shift-right-click.
 ---@return boolean, string|nil # True if successful, false with a failure reason.
-function robot.swing(side) end
+function robot.swing(side, face, sneaky) end
 
 ---Attempts to use an item as a player would (e.g., right-click).
----@param side number # The side to use the item on.
+---@param side InteractSide # The side to use the item on.
+---@param face Side|nil # The face of the target block.
 ---@param sneaky boolean|nil # Whether to simulate shift-right-click.
 ---@param duration number|nil # How long the item is used (e.g., charging a bow).
 ---@return boolean, string|nil # True if successful, false with a reason.
-function robot.use(side, sneaky, duration) end
+function robot.use(side, face, sneaky, duration) end
 
 ---Places a block from the currently selected inventory slot.
----@param side number # The side to place on.
+---@param side InteractSide # The side to place on.
+---@param face Side|nil # The face of the target block.
 ---@param sneaky boolean|nil # Whether to simulate shift placement.
 ---@return boolean, string|nil # True if successful, false with a reason.
-function robot.place(side, sneaky) end
+function robot.place(side, face, sneaky) end
 
 ---Gets the current color of the robot's light.
 ---@return number # RGB color as an integer (0xRRGGBB).
@@ -109,17 +132,17 @@ function robot.compareFluidTo(tank) end
 function robot.transferFluidTo(tank, count) end
 
 ---Detects a block in front of the robot.
----@param side number # The side to check.
+---@param side InteractSide # The side to check.
 ---@return boolean # True if a block is detected.
 function robot.detect(side) end
 
 ---Compares fluid in the selected tank to the world or another tank.
----@param side number # The side to check.
+---@param side InteractSide # The side to check.
 ---@return boolean # True if fluids match.
 function robot.compareFluid(side) end
 
 ---Drains fluid from the world or a tank.
----@param side number # The side to drain from.
+---@param side InteractSide # The side to drain from.
 ---@param count number|nil # Amount to drain (default: 1000 mB).
 ---@return boolean # True if successful.
 function robot.drain(side, count) end
@@ -131,19 +154,19 @@ function robot.drain(side, count) end
 function robot.fill(side, count) end
 
 ---Compares a block with the item in the selected slot.
----@param side number # The side to compare with.
+---@param side InteractSide # The side to compare with.
 ---@param fuzzy boolean|nil # Whether to allow slight variations.
 ---@return boolean # True if blocks are identical.
 function robot.compare(side, fuzzy) end
 
 ---Drops items from the selected slot.
----@param side number # The side to drop onto.
+---@param side InteractSide # The side to drop onto.
 ---@param count number|nil # Number of items to drop (default: all).
 ---@return boolean # True if successful.
 function robot.drop(side, count) end
 
 ---Picks up items from the world or an inventory.
----@param side number # The side to pick up from.
+---@param side InteractSide # The side to pick up from.
 ---@param count number|nil # Number of items to pick up (default: all).
 ---@return boolean # True if successful.
 function robot.suck(side, count) end

@@ -1,34 +1,17 @@
 --
 -- run from net
 --
-
 -- REQUIRES and OVERLOADS
-local cpt=component or require("component")
 local cmp=computer or require("computer")
-
-local function try_proxy(name, nil_ok) 
-    local l=cpt.list(name)()
-    if not l and nil_ok then return nil end
-    return cpt.proxy(l)
-end
-
-local rb = try_proxy("robot")
+local cpt=component or require("component")
+setmetatable(cpt, {__index=function(_,k)return cpt.proxy(cpt.list(k)()) end})
+---@cast cpt component
 
 print=print or function (...) end
 
--- LIB --
+-- COMPONENTS
 
-local colours={
-    red=0xFF0000,
-    blue=0x0000FF,
-    green=0x00FF00,
-    yellow=0x00FFFF,
-    white=0xFFFFFF,
-}
-
-local function set_light(colour)
-    if rb then rb.setLightColor(colour) end
-end
+local ip= cpt.internet
 
 -- CONFIG --
 
@@ -38,17 +21,14 @@ local PORT=20222
 
 -- MAIN --
 
-set_light(colours.white)
-
 -- Connect socket
 print("Connecting...")
-local ip=cpt.proxy(cpt.list("internet")())
+
 
 local socket
 while true do
     socket,_ = ip.connect(ADDR..":"..PORT)
     if socket.finishConnect() or socket.finishConnect() then
-        set_light(colours.blue)
         print("Connected.")
         break
     end
@@ -79,13 +59,11 @@ end
 -- Load data as program
 local program, load_fail= load(table.concat(buffer), "="..FILE)
 if not program or load_fail then
-    socket.write("Load failed: "..load_fail"\n")
-    set_light(colours.yellow)
+    socket.write("Load failed: "..load_fail.."\n")
     error(load_fail)
 end
 
 socket.close()
-set_light(colours.green)
 
 -- overwrite print
 local function net_print(...)
@@ -109,5 +87,4 @@ if ok then
     print("OK:"..result.."\n")
 else
     print("Failed:"..result.."\n")
-    set_light(colours.red)
 end

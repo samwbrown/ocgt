@@ -1,9 +1,12 @@
-local cpt=require("component")
-local sides= require("sides")
+-- openos --
+local sides= require [[sides]]
+local cpt= require [[component]]
 
+-- components --
 local me= cpt.me_controller
 local tp= cpt.transposer
 
+-- run --
 local is_craftable={}
 setmetatable(is_craftable, {
 	__index= function(table, key)

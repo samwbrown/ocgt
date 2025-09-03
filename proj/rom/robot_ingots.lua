@@ -1,34 +1,18 @@
 --
--- non-consumeable item inputs
---
-
--- REQUIRES AND COMPONENTS
+-- REQUIRES and OVERLOADS
 local cmp=computer or require("computer")
 local cpt=component or require("component")
-local tb=table
-local function part(name)
-  return cpt.proxy(cpt.list(name)())
-end
-
-local rb=   part( "robot")
-local gen=  part( "gen")
-local ic=  part( "inventory_controller")
-local craft=  part( "crafting")
-
-
--- local ic= component.inventory_controller()
--- local rb= component.robot()
-
-if not io then io={write=function (...) end, flush= function() end} end
-
-if chat and not print then
-  chat.setName("Robot NC")
-  print= function (...) chat.say(tb.concat(tb.pack(...), "\t"), 10) end
-  chat.say("Configured", 10)
-end
+setmetatable(cpt, {__index=function(_,k)return cpt.proxy(cpt.list(k)()) end})
+---@cast cpt component
 
 print=print or function (...) end
 
+-- COMPONENTS
+
+local rb= cpt.robot
+local gen= cpt.generator
+local ic= cpt.inventory_controller
+local craft= cpt.crafting
 
 -- set lighting
 rb.setLightColor(0x00FF00)
@@ -49,9 +33,7 @@ local sides = {
 
 local ME_SIDE=sides.front
 
-
 -- MAIN --
-
 
 local function check_fuel()
   if gen.count() > 0 or cmp.energy() > (cmp.maxEnergy()/2)  then

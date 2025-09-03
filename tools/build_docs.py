@@ -8,7 +8,7 @@ import re
 import pandas as pd
 
 
-BASE_PATH="/users/sam/projects/thirdparty/OpenComputers/"
+BASE_PATH="~/projects/thirdparty/OpenComputers/"
 
 TOP_PATH=    "src/main/scala/li/cil/oc/server"
 MODS_PATH=   "src/main/scala/li/cil/oc/integration"

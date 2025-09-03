@@ -20,7 +20,7 @@ function database.indexOf(hash) end
 ---@param damage integer # The damage/metadata of the item
 ---@param nbt? string # The nbt of the item, formatted using JSON
 ---@return boolean # True if the item was successfully written.
----@return nil|string # An error telling you what went wrong.
+---@return nil|string # An error telling you what went wrong.u
 function database.set(slot, id, damage, nbt) end
 
 ---Clears the specified slot. Returns true if there was something in the slot before.

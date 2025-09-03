@@ -1,33 +1,31 @@
 --
 -- non-consumeable item inputs
 --
-
--- REQUIRES AND COMPONENTS
+-- REQUIRES and OVERLOADS
 local cmp=computer or require("computer")
 local cpt=component or require("component")
-local tb=table
+setmetatable(cpt, {__index=function(_,k)return cpt.proxy(cpt.list(k)()) end})
+---@cast cpt component
 
-local function try_proxy(name, nil_ok) 
-    local l=cpt.list(name)()
-    if not l and nil_ok then return nil end
-    return cpt.proxy(l)
-end
+print=print or function (...) end
 
-local rb = try_proxy("robot")
-local ic = try_proxy("inventory_controller")
-local chat = try_proxy("chat", true)
-local gen = try_proxy("generator", true)
+-- COMPONENTS
 
-if not io then io={write=function (...) end, flush= function() end} end
+local rb= cpt.robot
+local gen= cpt.generator
+local ic= cpt.inventory_controller
+local chat= cpt.chat
+
+-- set lighting
+rb.setLightColor(0x00FF00)
 
 if chat and not print then
   chat.setName("Robot NC")
-  print= function (...) chat.say(tb.concat(tb.pack(...), "\t"), 10) end
+  print= function (...) chat.say(table.concat(table.pack(...), "\t"), 10) end
   chat.say("Configured", 10)
 end
 
 print=print or function (...) end
-
 
 -- set lighting
 rb.setLightColor(0x00FF00)

@@ -34,20 +34,12 @@ function inventory_controller.equip() end
 ---@return boolean
 function inventory_controller.storeInternal(slot, dbAddress, dbSlot) end
 
----Drops an item into the specified slot in the item inventory.
----@param inventorySlot number
----@param slot number
----@param count number=64?
----@return number
-function inventory_controller.dropIntoItemInventory(inventorySlot, slot, count) end
-
 ---Swaps the installed upgrade in the slot (1 by default) with the content of the currently selected inventory slot.
 ---@param slot number?
 ---@return boolean
 function inventory_controller.installUpgrade(slot) end
 
 ---Compare an item in the specified slot in the inventory on the specified side with one in the database with the specified address.
-
 ---@param side number
 ---@param slot number
 ---@param dbAddress string
@@ -57,9 +49,26 @@ function inventory_controller.installUpgrade(slot) end
 function inventory_controller.compareStackToDatabase(side, slot, dbAddress, dbSlot, checkNBT) end
 
 ---The size of an item inventory in the specified slot.
+---Only works with OC servers and databases.
 ---@param slot number
 ---@return number
 function inventory_controller.getItemInventorySize(slot) end
+
+---Drops an item into the specified slot in the item inventory.
+---Only works with OC servers and databases.
+---@param inventorySlot number
+---@param slot number
+---@param count number=64?
+---@return number
+function inventory_controller.dropIntoItemInventory(inventorySlot, slot, count) end
+
+---Sucks an item out of the specified slot in the item inventory.
+---Only works with OC servers and databases.
+---@param inventorySlot number
+---@param slot number
+---@param count number=64?
+---@return number
+function inventory_controller.suckFromItemInventory(inventorySlot, slot, count) end
 
 ---Sucks items from the specified slot of an inventory.
 ---@param facing number
@@ -119,13 +128,6 @@ function inventory_controller.getInventoryName(side) end
 ---@param slot number?
 ---@return ItemStack|nil # `nil` if there is no items in the slot
 function inventory_controller.getStackInInternalSlot(slot) end
-
----Sucks an item out of the specified slot in the item inventory.
----@param inventorySlot number
----@param slot number
----@param count number=64?
----@return number
-function inventory_controller.suckFromItemInventory(inventorySlot, slot, count) end
 
 ---Get the number of slots in the inventory on the specified side of the device.
 ---@param side number

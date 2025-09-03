@@ -5,7 +5,7 @@ filesystem={}
 
 ---Closes an open file descriptor with the specified handle.
 ---direct (returns immediately)
----@param handle userdata
+---@param handle File
 function filesystem.close(handle) end
 
 ---Returns a list of names of objects in the directory at the specified absolute path in the file system.
@@ -17,7 +17,7 @@ function filesystem.list(path) end
 ---direct (returns immediately)
 ---@param path string
 ---@param mode string='r'?
----@return userdata
+---@return File
 function filesystem.open(path, mode) end
 
 ---Removes the object at the specified absolute path in the file system.
@@ -33,7 +33,7 @@ function filesystem.isDirectory(path) end
 
 ---Seeks in an open file descriptor with the specified handle. Returns the new pointer position.
 ---direct (returns immediately)
----@param handle userdata
+---@param handle File
 ---@param whence string
 ---@param offset number
 ---@return number
@@ -42,7 +42,7 @@ function filesystem.seek(handle, whence, offset) end
 ---Reads up to the specified amount of data from an open file descriptor with the specified handle. Returns nil when EOF is reached.
 ---direct (returns immediately)
 
----@param handle userdata
+---@param handle File
 ---@param count number
 ---@return string or nil
 function filesystem.read(handle, count) end
@@ -66,7 +66,7 @@ function filesystem.makeDirectory(path) end
 
 ---Writes the specified data to an open file descriptor with the specified handle.
 ---direct (returns immediately)
----@param handle userdata
+---@param handle File
 ---@param value string
 ---@return boolean
 function filesystem.write(handle, value) end

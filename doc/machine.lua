@@ -1,4 +1,50 @@
----@meta
+---@meta _
+
+component={
+  slot= function() end,
+  invoke= function() end,
+  list= function() end,
+  fields= function() end,
+  proxy= function() end,
+  methods= function() end,
+  type= function() end,
+  doc= function() end,
+}
+
+computer={
+  addUser= function() end,
+  users= function() end,
+  tmpAddress= function() end,
+  getProgramLocations= function() end,
+  setBootAddress= function() end,
+  pullSignal= function() end,
+  getArchitecture= function() end,
+  getDeviceInfo= function() end,
+  pushSignal= function() end,
+  maxEnergy= function() end,
+  shutdown= function() end,
+  energy= function() end,
+  setArchitecture= function() end,
+  freeMemory= function() end,
+  address= function() end,
+  beep= function() end,
+  uptime= function() end,
+  removeUser= function() end,
+
+  getArchitectures= function() end,
+  totalMemory= function() end,
+}
+
+coroutine={
+  wrap= function() end,
+  status= function() end,
+  running= function() end,
+  isyieldable= function() end,
+  resume= function() end,
+  yield= function() end,
+  create= function() end,
+}
+
 
 local function spcall(...)
   local result = table.pack(pcall(...))

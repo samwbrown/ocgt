@@ -3,12 +3,18 @@
 --
 
 -- EXTERNAL
-local component= component or require("component")
-local computer= computer or require("computer")
+local cmp=computer or require("computer")
+local cpt=component or require("component")
+setmetatable(cpt, {__index=function(_,k)return cpt.proxy(cpt.list(k)()) end})
+---@cast cpt component
+
+local print= print or function (...) end
 local string= string
 local debug= debug
 
-print=print or function (...) end
+-- COMPONENTS
+
+local ip= cpt.internet
 
 -- CONFIG --
 
@@ -16,8 +22,6 @@ local ADDR="103.115.209.188"
 local PORT=20222
 
 -- MAIN --
-
-local ip=component.proxy(component.list("internet")())
 
 local function input(timeout)
     local socket, _ = ip.connect(ADDR..":"..PORT)
@@ -68,8 +72,6 @@ while true do
 end
 
 -- Load data as program
-
-
 
 -- give it a sec
 computer.pullSignal(1)

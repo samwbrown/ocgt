@@ -1,4 +1,4 @@
----@meta "robot"
+-- defunct ---@meta "robot"
 
 ---@class robot
 local robot = {}
