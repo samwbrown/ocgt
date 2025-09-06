@@ -40,27 +40,26 @@ local SYSTEM_LIBS={
 
 -- local --
 local function pull_file(filename)
-    local result, response
-    for i, folder in ipairs(FOLDERS) do
-        result, response = pcall(internet.request, ADDR..folder..filename)
-        if result then
-            print(ADDR..folder..filename)
-            break
-        end
-    end
-    assert(result, "File does not exist: "..filename)
+    for _, folder in ipairs(FOLDERS) do
+        local response= internet.request(ADDR..folder..filename)
+        local ok, result = pcall( function()
+            local fd
+            local rc=0
+            for chunk in response do
+                fd=fd or io.open(DIR..filename, "w")
+                fd:write(chunk)
+                rc = rc + #chunk
+            end
 
-    local rc=0
-    local fd=io.open(DIR..filename, "w")
+            fd:close()
+            print(string.format("%s: %d bytes", DIR..filename, rc))
+            return rc
+        end)
 
-    for chunk in response do
-        fd:write(chunk)
-        rc = rc + #chunk
+        if ok then return result end
     end
-    
-    fd:close()
-    print(string.format("%s: %d bytes", DIR..filename, rc))
-    return rc
+
+    error("Could not read file")
 end
 
 local function read_dependencies(filename)
