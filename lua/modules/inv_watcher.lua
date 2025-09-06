@@ -8,6 +8,7 @@ local cpt= require [[component]]
 
 -- components --
 local rb= cpt.robot
+local ic= cpt.inventory_controller
 
 -- package --
 local inv_watcher={
@@ -35,12 +36,16 @@ function inv_watcher.tick()
         return
     end
 
-    for i=1, rb.inventorySize() do
-        if not utils.is_reserved(i) and rb.count(i)==0 then
-            rb.select(i)
-            rb.suck(in_side)
-            return
+    local inv_slot=1
+    for _ in ic.getAllStacks(in_side) do
+        for i=inv_slot, rb.inventorySize() do
+            if not utils.is_reserved(i) and rb.count(i)==0 then
+                inv_slot=i
+                rb.select(inv_slot)
+                rb.suck(in_side)
+            end
         end
+        return
     end
 end
 
