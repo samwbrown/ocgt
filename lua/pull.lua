@@ -1,5 +1,4 @@
 -- openos --
-local fs = require [[filesystem]]
 local shell = require [[shell]]
 local internet = require [[internet]]
 
@@ -49,7 +48,7 @@ local function pull_file(filename)
     assert(result, "File does not exist: "..filename)
 
     local rc=0
-    local fd=fs.open(DIR..filename, "w")
+    local fd=io.open(DIR..filename, "w")
 
     for chunk in response do
         fd:write(chunk)
@@ -62,7 +61,7 @@ local function pull_file(filename)
 end
 
 local function read_dependencies(filename)
-    local fd=fs.open(DIR..filename, "r")
+    local fd=io.open(DIR..filename)
     local data=fd:read(300)
     fd:close()
 
