@@ -85,7 +85,7 @@ local function pull_dependencies(filename)
             checked[dep]=true
             pull_file(dep..".lua")
             local new_deps= read_dependencies(dep..".lua")
-            for _,v in ipairs(new_deps) do table.insert(v) end
+            for _,v in ipairs(new_deps) do table.insert(deps, v) end
         end
     end
 end
