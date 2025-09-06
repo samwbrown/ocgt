@@ -32,6 +32,7 @@ function robot_utils.reserve_slot()
 end
 
 function robot_utils.is_reserved(idx)
+    checkArgs(1, "number")
     return reserved_slots[idx]
 end
 
