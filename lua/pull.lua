@@ -50,18 +50,20 @@ local function pull_file(filename)
     print(result)
 
     local rc=0
-    local fd=fs.open(DIR..filename, "w")
+    local fd, err=fs.open(DIR..filename, "w")
+    assert(fd, "Failed to open file for write"..err)
     for chunk in response do
         fd:write(chunk)
         rc = rc + #chunk
     end
-
+    
     print(string.format("%s: %d bytes", DIR..filename, rc))
     return rc
 end
 
 local function read_dependencies(filename)
-    local fd=fs.open(DIR..filename, "r")
+    local fd,err=fs.open(DIR..filename, "r")
+    assert(fd, "Failed to open file for read"..err)
     local data=fd:read(300)
 
     local deps={}
@@ -100,7 +102,7 @@ local filename = args[1]
 pull_file(filename)
 
 if options.r then
-    pull_dependencies(DIR..filename)
+    pull_dependencies(filename)
 end
 
 
