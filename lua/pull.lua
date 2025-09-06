@@ -47,11 +47,10 @@ local function pull_file(filename)
         if result then break end
     end
     assert(result, "File does not exist: "..filename)
-    print(result)
 
     local rc=0
-    local fd, err=fs.open(DIR..filename, "w")
-    assert(fd, "Failed to open file for write"..err)
+    local fd=fs.open(DIR..filename, "w")
+
     for chunk in response do
         fd:write(chunk)
         rc = rc + #chunk
@@ -62,8 +61,7 @@ local function pull_file(filename)
 end
 
 local function read_dependencies(filename)
-    local fd,err=fs.open(DIR..filename, "r")
-    assert(fd, "Failed to open file for read"..err)
+    local fd=fs.open(DIR..filename, "r")
     local data=fd:read(300)
 
     local deps={}
