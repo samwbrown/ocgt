@@ -46,7 +46,6 @@ local function pull_file(filename)
         result, response = pcall(internet.request, ADDR..folder..filename)
         if result then break end
     end
-    print(result)
     assert(result, "File does not exist: "..filename)
 
     local rc=0
@@ -57,6 +56,7 @@ local function pull_file(filename)
         rc = rc + #chunk
     end
     
+    fd:close()
     print(string.format("%s: %d bytes", DIR..filename, rc))
     return rc
 end
@@ -64,6 +64,7 @@ end
 local function read_dependencies(filename)
     local fd=fs.open(DIR..filename, "r")
     local data=fd:read(300)
+    fd:close()
 
     local deps={}
     for dep in string.gmatch(data, "require%s*%[%[([%w_]+)%]%]") do
