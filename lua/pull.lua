@@ -48,7 +48,7 @@ local function pull_file(filename)
     assert(result, "File does not exist: "..filename)
 
     local rc=0
-    local fd=io.open(DIR..filename, "w")
+    local fd=io.open(DIR..filename, "wb")
 
     for chunk in response do
         fd:write(chunk)
