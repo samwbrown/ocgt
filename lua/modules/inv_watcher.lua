@@ -37,16 +37,20 @@ function inv_watcher.tick()
     end
 
     local inv_slot=1
-    for _ in ic.getAllStacks(in_side) do
-        for i=inv_slot, rb.inventorySize() do
-            if not utils.is_reserved(i) and rb.count(i)==0 then
-                inv_slot=i
-                rb.select(inv_slot)
-                rb.suck(in_side)
+    local inv_size=rb.inventorySize()
+    for item in ic.getAllStacks(in_side) do
+        if item then
+            for i=inv_slot, inv_size do
+                if not utils.is_reserved(i) and rb.count(i)==0 then
+                    inv_slot=i
+                    rb.select(inv_slot)
+                    rb.suck(in_side)
+                end
             end
         end
-        return
     end
+    
+    return
 end
 
 
