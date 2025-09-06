@@ -84,10 +84,8 @@ local function pull_dependencies(filename)
         local dep=table.remove(deps)
         if not checked[dep] then
             checked[dep]=true
-            local dep_path=DIR..dep..".lua"
-
-            pull_file(dep_path)
-            local new_deps= read_dependencies(dep_path)
+            pull_file(dep..".lua")
+            local new_deps= read_dependencies(dep..".lua")
             for _,v in ipairs(new_deps) do table.insert(v) end
         end
     end
