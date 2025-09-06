@@ -43,12 +43,15 @@ local function pull_file(filename)
     local result, response
     for i, folder in ipairs(FOLDERS) do
         result, response = pcall(internet.request, ADDR..folder..filename)
-        if result then break end
+        if result then
+            print(ADDR..folder..filename)
+            break
+        end
     end
     assert(result, "File does not exist: "..filename)
 
     local rc=0
-    local fd=io.open(DIR..filename, "wb")
+    local fd=io.open(DIR..filename, "w")
 
     for chunk in response do
         fd:write(chunk)
