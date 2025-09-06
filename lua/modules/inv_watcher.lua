@@ -39,9 +39,9 @@ function inv_watcher.tick()
     local inv_slot=1
     local inv_size=rb.inventorySize()
     for item in ic.getAllStacks(in_side) do
-        print(item.size or "none")
         if item.size then
             for i=inv_slot, inv_size do
+                io.write(tostring(i)..",")
                 if not utils.is_reserved(i) and rb.count(i)==0 then
                     inv_slot=i
                     rb.select(inv_slot)
