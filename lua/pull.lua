@@ -46,6 +46,7 @@ local function pull_file(filename)
         result, response = pcall(internet.request, ADDR..folder..filename)
         if result then break end
     end
+    print(result)
     assert(result, "File does not exist: "..filename)
 
     local rc=0
