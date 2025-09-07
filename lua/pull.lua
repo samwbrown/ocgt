@@ -3,8 +3,12 @@ local shell = require [[shell]]
 local internet = require [[internet]]
 
 -- config --
-local ADDR="https://raw.githubusercontent.com/samwbrown/ocgt/refs/heads/main/lua/"
+local ADDR="https://raw.githubusercontent.com/samwbrown/ocgt/refs/heads/dev/lua/"
 local FOLDERS={"","lib/","modules/"}
+local HEADERS={
+    ["Cache-Control"]="no-cache, no-store, must-revalidate",
+    ["Expires"]=0,
+}
 
 local DIR=shell.getWorkingDirectory().."/"
 local SYSTEM_LIBS={
@@ -41,7 +45,7 @@ local SYSTEM_LIBS={
 -- local --
 local function pull_file(filename)
     for _, folder in ipairs(FOLDERS) do
-        local response= internet.request(ADDR..folder..filename, {["Cache-Control"]="no-cache, no-store, must-revalidate"})
+        local response= internet.request(ADDR..folder..filename, nil, HEADERS)
         local ok, result = pcall( function()
             local fd
             local rc=0
