@@ -41,7 +41,7 @@ local SYSTEM_LIBS={
 -- local --
 local function pull_file(filename)
     for _, folder in ipairs(FOLDERS) do
-        local response= internet.request(ADDR..folder..filename)
+        local response= internet.request(ADDR..folder..filename, {["Cache-Control"]="no-cache, no-store, must-revalidate"})
         local ok, result = pcall( function()
             local fd
             local rc=0
