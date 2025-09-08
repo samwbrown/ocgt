@@ -59,7 +59,7 @@ local function pull_file(filename)
             end
 
             fd:close()
-            print(string.format("%s: %d -> %d bytes", DIR..filename, rc))
+            print(string.format("%s: %d -> %d bytes", DIR..filename, size, rc))
             return rc
         end)
 
