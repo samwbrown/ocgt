@@ -7,7 +7,7 @@ local fs = require [[filesystem]]
 local ADDR="https://raw.githubusercontent.com/samwbrown/ocgt/refs/heads/dev/lua/"
 local FOLDERS={"","lib/","modules/"}
 local HEADERS={
-    ["Cache-Control"]="no-cache, no-store, must-revalidate",
+    ["Cache-Control"]={"no-cache", "no-store", "must-revalidate"},
     ["Pragma"]="no-cache",
     ["Expires"]=0,
 }
