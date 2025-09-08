@@ -17,8 +17,7 @@ local filename= args[1]
 local size= fs.size(filename)
 
 local fd=assert(io.open(filename, "r"))
-
-fd:seek("end", max(max_chars, size))
+fd:seek("end", math.max(max_chars, size))
 
 -- skip partial line
 local _= fd:read("*l")
