@@ -18,7 +18,7 @@ local fd=assert(io.open(filename, "r"))
 fd:seek("end", -max)
 
 -- skip partial line
-local skipped= fd:read("*l")
+local _= fd:read("*l")
 
 for line in fd:read("*L") do
     io.write(line)
