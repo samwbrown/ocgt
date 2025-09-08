@@ -1,6 +1,7 @@
 -- openos --
 local shell = require [[shell]]
 local term = require [[term]]
+local fs = require [[filesystem]]
 
 -- args --
 local args, ops = shell.parse(...)
@@ -10,12 +11,14 @@ if #args ~= 1 then
 end
 
 local width, height = term.getViewport()
-local max= width * height
+local max_chars= width * height
 
 local filename= args[1]
+local size= fs.size(filename)
+
 local fd=assert(io.open(filename, "r"))
 
-fd:seek("end", max)
+fd:seek("end", max(max_chars, size))
 
 -- skip partial line
 local _= fd:read("*l")
