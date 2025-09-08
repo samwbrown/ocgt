@@ -15,7 +15,7 @@ local max= width * height
 local filename= args[1]
 local fd=assert(io.open(filename, "r"))
 
-fd:seek("end", -max)
+fd:seek("end", max)
 
 -- skip partial line
 local _= fd:read("*l")
