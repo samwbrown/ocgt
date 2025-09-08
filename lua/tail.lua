@@ -20,8 +20,7 @@ local fd=assert(io.open(filename, "r"))
 
 print(max_chars)
 print(size)
-return 1
-
+error()
 
 fd:seek("end", math.max(max_chars, size))
 
