@@ -45,6 +45,8 @@ local SYSTEM_LIBS={
 
 -- local --
 local function pull_file(filename)
+    local size=fs.exists(DIR..filename) and fs.size(DIR..filename) or 0
+
     for _, folder in ipairs(FOLDERS) do
         local response= internet.request(ADDR..folder..filename, nil, HEADERS)
         local ok, result = pcall( function()
