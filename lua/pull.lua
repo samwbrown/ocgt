@@ -4,7 +4,7 @@ local internet = require [[internet]]
 local fs = require [[filesystem]]
 
 -- config --
-local ADDR="https://raw.githubusercontent.com/samwbrown/ocgt/refs/heads/dev/lua/"
+local ADDR="https://samwbrown.github.io/ocgt/lua/"
 local FOLDERS={"","lib/","modules/"}
 local HEADERS={
     ["Cache-Control"]={"no-cache", "no-store", "must-revalidate"},
