@@ -17,6 +17,12 @@ local filename= args[1]
 local size= fs.size(filename)
 
 local fd=assert(io.open(filename, "r"))
+
+print(max_chars)
+print(size)
+return 1
+
+
 fd:seek("end", math.max(max_chars, size))
 
 -- skip partial line
