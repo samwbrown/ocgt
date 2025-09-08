@@ -13,7 +13,7 @@ end
 local width, height = term.getViewport()
 local max_chars= width * height
 
-local filename= args[1]
+local filename= shell.resolve(args[1])
 local size= fs.size(filename)
 
 local fd=assert(io.open(filename, "r"))
