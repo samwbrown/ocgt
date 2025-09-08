@@ -1,6 +1,7 @@
 -- openos --
 local shell = require [[shell]]
 local internet = require [[internet]]
+local fs = require [[filesystem]]
 
 -- config --
 local ADDR="https://raw.githubusercontent.com/samwbrown/ocgt/refs/heads/dev/lua/"
